@@ -20,6 +20,7 @@ class GameScene: SKScene {
         if let label = self.label {
             label.alpha = 0.0
             label.run(SKAction.fadeIn(withDuration: 2.0))
+            print("hello")
         }
         
         // Create shape node to use during mouse interaction
