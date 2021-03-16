@@ -30,6 +30,15 @@
                                     <constraint firstAttribute="height" constant="180" id="wZU-8o-CEP"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GbH-lH-0KE">
+                                <rect key="frame" x="158.5" y="111" width="97" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="bXY-Zz-AbO"/>
+                                    <constraint firstAttribute="height" constant="34" id="par-LK-DCq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -37,10 +46,13 @@
                             <constraint firstAttribute="bottomMargin" secondItem="o1T-hi-GNr" secondAttribute="bottom" constant="16" id="NhD-w6-3Bl"/>
                             <constraint firstItem="o1T-hi-GNr" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="aaW-TJ-bpB"/>
                             <constraint firstItem="oyB-vT-TXj" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="cIe-ea-BDp"/>
+                            <constraint firstItem="GbH-lH-0KE" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="67" id="hEM-Hl-Cf2"/>
                             <constraint firstItem="oyB-vT-TXj" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="urU-fp-EEW"/>
+                            <constraint firstItem="GbH-lH-0KE" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="ykC-jM-3VD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="LoudnessText" destination="GbH-lH-0KE" id="HO7-uE-i73"/>
                         <outlet property="animation1" destination="oyB-vT-TXj" id="xDV-U6-9H7"/>
                         <outlet property="animation2" destination="o1T-hi-GNr" id="JXu-eg-bMF"/>
                     </connections>
