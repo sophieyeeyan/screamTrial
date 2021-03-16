@@ -41,8 +41,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ImageView" destination="oyB-vT-TXj" id="wTj-7V-0GM"/>
-                        <outlet property="ImageViewTwo" destination="o1T-hi-GNr" id="Cs4-SB-mtP"/>
+                        <outlet property="animation1" destination="oyB-vT-TXj" id="xDV-U6-9H7"/>
+                        <outlet property="animation2" destination="o1T-hi-GNr" id="JXu-eg-bMF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
