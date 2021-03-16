@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var animation1: UIImageView!
     @IBOutlet weak var animation2: UIImageView!
     
+    @IBOutlet weak var LoudnessText: UITextField!
     var tap: UITapGestureRecognizer!
         
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
