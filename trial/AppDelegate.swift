@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 {
                     rms+=abs(audio[0][i])
                 }
-                rms /= Float(buffer.frameCapacity)*1000
+                rms /= Float(buffer.frameCapacity)
                 self.someVariable = rms
                 //print("loudnes RMS = \(rms)")
             }
