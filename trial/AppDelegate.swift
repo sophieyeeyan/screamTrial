@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let audioEngine = AVAudioEngine()
+    var someVariable: Float = 0.0
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -63,8 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 {
                     rms+=abs(audio[0][i])
                 }
-                rms /= Float(buffer.frameCapacity)
-                print("loudnes RMS = \(rms)")
+                rms /= Float(buffer.frameCapacity)*1000
+                self.someVariable = rms
+                //print("loudnes RMS = \(rms)")
             }
         }
         try audioEngine.start()
