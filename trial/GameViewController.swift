@@ -14,13 +14,21 @@ class GameViewController: UIViewController {
     @IBOutlet weak var animation1: UIImageView!
     @IBOutlet weak var animation2: UIImageView!
     
-    @IBOutlet weak var LoudnessText: UITextField!
+    @IBOutlet weak var LoudnessText: UITextView!
     var tap: UITapGestureRecognizer!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var gameTimer: Timer?
         
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         touchDown(view2play: animation1)
         touchDown(view2play: animation2)
 
+    }
+    
+    @objc func loudnessText () {
+        let aVariable = appDelegate.someVariable
+        LoudnessText.text = String(aVariable)
+        //LoundnessText.text = aVariable
     }
 
     override func viewDidLoad() {
@@ -50,8 +58,12 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudnessText), userInfo: nil, repeats: true)
+
     }
     
+
     
     func loadAnimation (view2load: UIImageView, imageNames: [String], animationDuration: Double) {
         var images = [UIImage]()
