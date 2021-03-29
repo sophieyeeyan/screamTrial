@@ -17,7 +17,9 @@ class GameViewController: UIViewController {
     @IBOutlet weak var LoudnessText: UITextView!
     var tap: UITapGestureRecognizer!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     var gameTimer: Timer?
+    
         
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         //touchDown(view2play: animation1)
@@ -36,8 +38,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         tap = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleTap(_:)))
         view.addGestureRecognizer(tap)
-        loudControl(view2play: animation1)
-        loudControl(view2play: animation2)
+        
 
         
         let destoryImages = ["bol_1","bol_2", "bol_3","bol_4","bol_5", "bol_6","bol_7","bol_8","bol_9","bol_10"]
@@ -64,6 +65,8 @@ class GameViewController: UIViewController {
         }
         
         gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudnessText), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudControl(view2play:animation1)), userInfo: nil, repeats: true)
+
 
     }
     
@@ -85,7 +88,7 @@ class GameViewController: UIViewController {
         view2play.startAnimating()
     }
     
-    func loudControl(view2play: UIImageView){
+    @objc func loudControl(view2play: UIImageView){
         let aVariable = appDelegate.someVariable
         if aVariable > 0.001 {
         print("this is loud mate")
@@ -93,6 +96,8 @@ class GameViewController: UIViewController {
         } else {
         print("this is quiet mate")
         }
+        
+
     }
     
     //func 
