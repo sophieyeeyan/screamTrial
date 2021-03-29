@@ -20,14 +20,15 @@ class GameViewController: UIViewController {
     var gameTimer: Timer?
         
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
-        touchDown(view2play: animation1)
-        touchDown(view2play: animation2)
+        //touchDown(view2play: animation1)
+        //touchDown(view2play: animation2)
 
     }
     
     @objc func loudnessText () {
         let aVariable = appDelegate.someVariable
         LoudnessText.text = String(aVariable)
+        //LoudnessText.text = String((format: "RMS: %.3f", aVariable))
         //LoundnessText.text = aVariable
     }
 
@@ -35,6 +36,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         tap = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleTap(_:)))
         view.addGestureRecognizer(tap)
+        loudControl(view2play: animation1)
+        loudControl(view2play: animation2)
+
         
         let destoryImages = ["bol_1","bol_2", "bol_3","bol_4","bol_5", "bol_6","bol_7","bol_8","bol_9","bol_10"]
         
@@ -71,7 +75,6 @@ class GameViewController: UIViewController {
             print("trying to load imageNames" + imageNames [i] )
             images.append(UIImage(named: imageNames[i])!)
         }
-        
         view2load.animationImages = images
         view2load.animationDuration = animationDuration
     }
@@ -80,8 +83,19 @@ class GameViewController: UIViewController {
     func touchDown(view2play: UIImageView) {
         print("touched")
         view2play.startAnimating()
-
     }
+    
+    func loudControl(view2play: UIImageView){
+        let aVariable = appDelegate.someVariable
+        if aVariable > 0.001 {
+        print("this is loud mate")
+        view2play.startAnimating()
+        } else {
+        print("this is quiet mate")
+        }
+    }
+    
+    //func 
 
     override var shouldAutorotate: Bool {
         return true
