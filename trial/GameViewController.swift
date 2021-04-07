@@ -11,15 +11,22 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var CountdownLabel: UILabel!
     @IBOutlet weak var animation1: UIImageView!
     @IBOutlet weak var animation2: UIImageView!
     
     @IBOutlet weak var LoudnessText: UITextView!
     var tap: UITapGestureRecognizer!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+
     var gameTimer: Timer?
+    var countdownTimer:Timer?
+    var timeLeft = 60
+    var name = ""
+    var view2play: UIImageView!
     
+  
+    //print(a.test)
         
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         //touchDown(view2play: animation1)
@@ -32,6 +39,17 @@ class GameViewController: UIViewController {
         LoudnessText.text = String(aVariable)
         //LoudnessText.text = String((format: "RMS: %.3f", aVariable))
         //LoundnessText.text = aVariable
+    }
+    
+    @objc func onTimerFires()
+    {
+        timeLeft -= 1
+        CountdownLabel.text = String(timeLeft)
+
+        if timeLeft <= 0 {
+            countdownTimer?.invalidate()
+            countdownTimer = nil
+        }
     }
 
     override func viewDidLoad() {
@@ -47,6 +65,7 @@ class GameViewController: UIViewController {
        
         loadAnimation(view2load: self.animation1, imageNames: destoryImages, animationDuration: 5.0)
         loadAnimation(view2load: self.animation2, imageNames: dinoImages, animationDuration: 1.0)
+        
 
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -64,12 +83,32 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudnessText), userInfo: nil, repeats: true)
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudControl(view2play:animation1)), userInfo: nil, repeats: true)
+        //var a:loudControlAnimation = loudControlAnimation()
+        //a.test = "I am testing"
+        //print(a.test)
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
 
+        gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudnessText), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudControl), userInfo: nil, repeats: true)
+        
 
     }
     
+    
+    @objc func loudControl(){
+        let aVariable = appDelegate.someVariable
+        //let view2play = animation1
+        
+        
+        if aVariable > 0.001 {
+        print("this is loud mate")
+            animation1.startAnimating()
+            animation2.startAnimating()
+
+        } else {
+        print("this is quiet mate")
+        }
+    }
 
     
     func loadAnimation (view2load: UIImageView, imageNames: [String], animationDuration: Double) {
@@ -88,17 +127,9 @@ class GameViewController: UIViewController {
         view2play.startAnimating()
     }
     
-    @objc func loudControl(view2play: UIImageView){
-        let aVariable = appDelegate.someVariable
-        if aVariable > 0.001 {
-        print("this is loud mate")
-        view2play.startAnimating()
-        } else {
-        print("this is quiet mate")
-        }
-        
-
-    }
+   
+    
+    
     
     //func 
 
