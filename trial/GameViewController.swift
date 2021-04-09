@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+   
+    @IBOutlet weak var ChecktimeLabel: UILabel!
     @IBOutlet weak var CountdownLabel: UILabel!
     @IBOutlet weak var ScoreLabel: UILabel!
     @IBOutlet weak var animation1: UIImageView!
@@ -26,6 +28,8 @@ class GameViewController: UIViewController {
     var countdownTimer:Timer?
     var progressBarTimer: Timer?
     var callProgressTimer: Timer?
+    var checkLoudnessTimer: Timer?
+    var appRunningTime = 0
     var timeLeft = 60
     var name = ""
     var view2play: UIImageView!
@@ -55,6 +59,12 @@ class GameViewController: UIViewController {
             countdownTimer?.invalidate()
             countdownTimer = nil
         }
+    }
+    
+    @objc func appRunningTimer()
+    {
+        appRunningTime += 1
+        ChecktimeLabel.text = String(appRunningTime)
     }
 
     override func viewDidLoad() {
@@ -96,6 +106,7 @@ class GameViewController: UIViewController {
         gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudnessText), userInfo: nil, repeats: true)
         gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudControl), userInfo: nil, repeats: true)
         callProgressTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(progressBar), userInfo: nil, repeats: true)
+        checkLoudnessTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(appRunningTimer), userInfo: nil, repeats: true)
     }
     
     @objc func loudControl(){
@@ -103,9 +114,9 @@ class GameViewController: UIViewController {
         //let aVariablesum = aVariable.reduce(0, +)
         //
         //let view2play = animation1
-
         
-        if currentRms > 0.05 {
+        //if currentRms > 0.05 {
+        if appRunningTime > 3 {
         print("this is loud mate")
             animation1.startAnimating()
             animation2.startAnimating()
@@ -125,7 +136,7 @@ class GameViewController: UIViewController {
                 progress += 0.01
                 self.ProgressBar.progress = progress
             //}
-            
+        
             if  self.ProgressBar.progress == 1.0 {
                 self.ProgressBar.progress = 0.0
 
