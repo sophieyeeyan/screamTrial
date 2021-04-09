@@ -99,13 +99,13 @@ class GameViewController: UIViewController {
     }
     
     @objc func loudControl(){
-        let aVariable = appDelegate.someVariable
-        let aVariablesum = aVariable.reduce(0, +)
+        let currentRms = appDelegate.someVariable
+        //let aVariablesum = aVariable.reduce(0, +)
         //
         //let view2play = animation1
+
         
-        
-        if aVariable > 0.05 {
+        if currentRms > 0.05 {
         print("this is loud mate")
             animation1.startAnimating()
             animation2.startAnimating()
@@ -118,7 +118,7 @@ class GameViewController: UIViewController {
     @objc func progressBar (){
         var progress: Float = 0.0
         ProgressBar.progress = progress
-        let aVariable = appDelegate.someVariable
+        let currentRms = appDelegate.someVariable
         
         progressBarTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { (Timer) in
             //if aVariable > 0.05{
