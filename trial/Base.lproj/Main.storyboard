@@ -74,19 +74,29 @@
                                     <constraint firstAttribute="height" constant="4" id="HS2-kr-18S"/>
                                 </constraints>
                             </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YS-NN-B0a">
+                                <rect key="frame" x="346" y="113" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rMg-d5-ZVl" firstAttribute="top" secondItem="9YS-NN-B0a" secondAttribute="bottom" constant="20" id="0hz-Jx-3i6"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="9YS-NN-B0a" secondAttribute="trailing" constant="57" id="Crp-QK-ROZ"/>
                             <constraint firstItem="adq-bu-dDq" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="42" id="Lzz-Cn-Ytm"/>
                             <constraint firstAttribute="bottomMargin" secondItem="o1T-hi-GNr" secondAttribute="bottom" constant="16" id="NhD-w6-3Bl"/>
                             <constraint firstItem="rMg-d5-ZVl" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="topMargin" constant="110" id="Quz-Fo-S8j"/>
                             <constraint firstItem="adq-bu-dDq" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="27" id="Ut0-Tt-2jQ"/>
                             <constraint firstItem="GRw-nO-Sbb" firstAttribute="leading" secondItem="adq-bu-dDq" secondAttribute="trailing" constant="13" id="Z9o-e0-86J"/>
+                            <constraint firstItem="9YS-NN-B0a" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="346" id="ZSo-Nt-hts"/>
                             <constraint firstItem="o1T-hi-GNr" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="aaW-TJ-bpB"/>
                             <constraint firstItem="LoH-Ct-v4b" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="42" id="bij-2a-wp8"/>
                             <constraint firstItem="oyB-vT-TXj" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="cIe-ea-BDp"/>
                             <constraint firstItem="GRw-nO-Sbb" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="44" id="cTi-F3-sTB"/>
+                            <constraint firstItem="9YS-NN-B0a" firstAttribute="top" secondItem="bYI-te-N4S" secondAttribute="bottom" constant="8" id="cg3-Ag-W7G"/>
                             <constraint firstItem="GRw-nO-Sbb" firstAttribute="leading" secondItem="adq-bu-dDq" secondAttribute="trailing" constant="13" id="dgV-FW-hbL"/>
                             <constraint firstItem="rMg-d5-ZVl" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="27" id="iaP-9M-bhz"/>
                             <constraint firstItem="AHE-3W-81z" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="35" id="kqD-gx-h9W"/>
@@ -99,6 +109,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ChecktimeLabel" destination="9YS-NN-B0a" id="t2x-eT-j3O"/>
                         <outlet property="CountdownLabel" destination="bYI-te-N4S" id="WsA-xv-C23"/>
                         <outlet property="LoudnessText" destination="AHE-3W-81z" id="kke-Qk-qBW"/>
                         <outlet property="ProgressBar" destination="rMg-d5-ZVl" id="2GP-3z-jKm"/>
