@@ -101,6 +101,7 @@ class GameViewController: UIViewController {
     @objc func loudControl(){
         let aVariable = appDelegate.someVariable
         let aVariablesum = aVariable.reduce(0, +)
+        //
         //let view2play = animation1
         
         
