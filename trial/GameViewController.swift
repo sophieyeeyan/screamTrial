@@ -24,6 +24,7 @@ class GameViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     var score = 0
+    var timeAboveThreshold = 0
     var gameTimer: Timer?
     var countdownTimer:Timer?
     var progressBarTimer: Timer?
@@ -115,14 +116,29 @@ class GameViewController: UIViewController {
         //
         //let view2play = animation1
         
+        let threshold:Int = Int(0.01)
+        if Int(currentRms) >= threshold {
+            print("someone is speaking loudly")
+            timeAboveThreshold += 1
+        }
+        else
+        {
+            timeAboveThreshold = 0
+        }
+        
+        if timeAboveThreshold > 3 {
+            
+        }
+        
+
         //if currentRms > 0.05 {
         if appRunningTime > 3 {
-        print("this is loud mate")
+        //print("this is loud mate")
             animation1.startAnimating()
             animation2.startAnimating()
 
         } else {
-        print("this is quiet mate")
+        //print("this is quiet mate")
         }
     }
     
