@@ -62,10 +62,31 @@ class GameViewController: UIViewController {
         }
     }
     
-    @objc func appRunningTimer()
+    @objc func checkLoudness()
     {
         appRunningTime += 1
         ChecktimeLabel.text = String(appRunningTime)
+        let currentRms = appDelegate.someVariable
+        
+        let threshold:Int = Int(0.01)
+        if Int(currentRms) >= threshold {
+            //print("someone is speaking loudly")
+            timeAboveThreshold += 1
+        }
+        else
+        {
+            timeAboveThreshold = 0
+        }
+        
+        if timeAboveThreshold > 3 {
+            //print("you have get one loud point")
+        }
+        
+        if timeAboveThreshold > 12 {
+            animation1.startAnimating()
+            animation2.startAnimating()
+            print("level 1 completed")
+        }
     }
 
     override func viewDidLoad() {
@@ -107,39 +128,26 @@ class GameViewController: UIViewController {
         gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudnessText), userInfo: nil, repeats: true)
         gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudControl), userInfo: nil, repeats: true)
         callProgressTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(progressBar), userInfo: nil, repeats: true)
-        checkLoudnessTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(appRunningTimer), userInfo: nil, repeats: true)
+        checkLoudnessTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkLoudness), userInfo: nil, repeats: true)
     }
     
     @objc func loudControl(){
-        let currentRms = appDelegate.someVariable
+        //let currentRms = appDelegate.someVariable
         //let aVariablesum = aVariable.reduce(0, +)
         //
         //let view2play = animation1
         
-        let threshold:Int = Int(0.01)
-        if Int(currentRms) >= threshold {
-            print("someone is speaking loudly")
-            timeAboveThreshold += 1
-        }
-        else
-        {
-            timeAboveThreshold = 0
-        }
+    
         
-        if timeAboveThreshold > 3 {
-            
-        }
-        
-
         //if currentRms > 0.05 {
-        if appRunningTime > 3 {
+        //if appRunningTime > 3 {
         //print("this is loud mate")
-            animation1.startAnimating()
-            animation2.startAnimating()
+            //animation1.startAnimating()
+            //animation2.startAnimating()
 
-        } else {
+        //} else {
         //print("this is quiet mate")
-        }
+        //}
     }
     
     @objc func progressBar (){
@@ -148,10 +156,11 @@ class GameViewController: UIViewController {
         let currentRms = appDelegate.someVariable
         
         progressBarTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { (Timer) in
-            //if aVariable > 0.05{
+            if self.timeAboveThreshold > 3{
                 progress += 0.01
+                print("you have got one progress")
                 self.ProgressBar.progress = progress
-            //}
+            }
         
             if  self.ProgressBar.progress == 1.0 {
                 self.ProgressBar.progress = 0.0
