@@ -82,7 +82,7 @@ class GameViewController: UIViewController {
             //print("you have get one loud point")
         }
         
-        if timeAboveThreshold > 12 {
+        if timeAboveThreshold > 30 {
             animation1.startAnimating()
             animation2.startAnimating()
             print("level 1 completed")
@@ -157,7 +157,7 @@ class GameViewController: UIViewController {
         
         progressBarTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
             if self.timeAboveThreshold > 3{
-                progress += 0.05
+                progress += 0.10
                 print("you have got one progress")
                 self.ProgressBar.progress = progress
             }
