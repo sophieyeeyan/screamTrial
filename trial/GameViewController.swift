@@ -155,15 +155,15 @@ class GameViewController: UIViewController {
         ProgressBar.progress = progress
         let currentRms = appDelegate.someVariable
         
-        progressBarTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { (Timer) in
+        progressBarTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
             if self.timeAboveThreshold > 3{
-                progress += 0.01
+                progress += 0.05
                 print("you have got one progress")
                 self.ProgressBar.progress = progress
             }
         
             if  self.ProgressBar.progress == 1.0 {
-                self.ProgressBar.progress = 0.0
+                //self.ProgressBar.progress = 0.0
 
             }
     
