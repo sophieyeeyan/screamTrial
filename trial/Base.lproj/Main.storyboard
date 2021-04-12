@@ -115,7 +115,7 @@
                         <outlet property="ProgressBar" destination="rMg-d5-ZVl" id="2GP-3z-jKm"/>
                         <outlet property="ScoreLabel" destination="GRw-nO-Sbb" id="GWW-pF-Bkm"/>
                         <outlet property="animation1" destination="oyB-vT-TXj" id="xDV-U6-9H7"/>
-                        <outlet property="animation2" destination="o1T-hi-GNr" id="JXu-eg-bMF"/>
+                        <outlet property="animation2" destination="o1T-hi-GNr" id="fVO-sE-ZqT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
