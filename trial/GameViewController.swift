@@ -23,7 +23,7 @@ class GameViewController: UIViewController {
     var tap: UITapGestureRecognizer!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    var score = 0
+    var gameScore = 0
     var timeAboveThreshold = 0
     var gameTimer: Timer?
     var countdownTimer:Timer?
@@ -35,8 +35,8 @@ class GameViewController: UIViewController {
     var timeLeft = 60
     var name = ""
     var view2play: UIImageView!
-    var roar1 : UIImage!
-    var roar2 : UIImage!
+    var roar1: UIImage!
+    var roar2: UIImage!
     
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         //touchDown(view2play: animation1)
@@ -52,7 +52,7 @@ class GameViewController: UIViewController {
     }
     
     @objc func scoreText(){
-       ScoreLabel.text = String(score)
+       ScoreLabel.text = String(gameScore)
     }
     
     @objc func onTimerFires()
@@ -69,7 +69,7 @@ class GameViewController: UIViewController {
     @objc func checkLoudness()
     {
         appRunningTime += 1
-        ChecktimeLabel.text = String(appRunningTime)
+        //ChecktimeLabel.text = String(appRunningTime)
         let currentRms = appDelegate.someVariable
         
         let threshold:Int = Int(0.01)
@@ -87,15 +87,24 @@ class GameViewController: UIViewController {
         
         if timeAboveThreshold > 3 {
         timeAboveThreshold = 0
-        score += 100
+        gameScore += 100
         print("you have get one loud point")
-        print(score)
+        print(gameScore)
         }
         
         if timeAboveThreshold > 30 {
             animation1.startAnimating()
             //animation2.startAnimating()
             print("level 1 completed")
+        }
+        
+        if (showRoar1)
+        {
+         animation2.image = roar1
+        }
+        else
+        {
+         animation2.image = roar2
         }
         
       
@@ -143,7 +152,7 @@ class GameViewController: UIViewController {
         gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(loudControl), userInfo: nil, repeats: true)
         //callProgressTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(progressBar), userInfo: nil, repeats: true)
         checkLoudnessTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkLoudness), userInfo: nil, repeats: true)
-        scoreTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(addScore), userInfo: nil, repeats: true)
+        scoreTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(scoreText), userInfo: nil, repeats: true)
     }
     
     @objc func loudControl(){
@@ -174,9 +183,13 @@ class GameViewController: UIViewController {
         let currentRms = appDelegate.someVariable
         
         progressBarTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
-            if self.score > 100{
+            if self.gameScore == 100{
                 progress += 0.10
-                //print("you have got one progress")
+                self.ProgressBar.progress = progress
+            }
+            else
+            {
+                progress = 0.0
                 self.ProgressBar.progress = progress
             }
         
