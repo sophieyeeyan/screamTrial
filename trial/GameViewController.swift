@@ -87,7 +87,7 @@ class GameViewController: UIViewController {
         
         if timeAboveThreshold > 3 {
         timeAboveThreshold = 0
-        gameScore += 100
+        gameScore += 10
         print("you have get one loud point")
         print(gameScore)
         }
@@ -116,7 +116,9 @@ class GameViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
         ProgressBar.progress = 0.0
+        ProgressBar.transform =  ProgressBar.transform.scaledBy(x:1 , y:4)
         progressBar()
+        
 
         let destoryImages = ["bol_1","bol_2", "bol_3","bol_4","bol_5", "bol_6","bol_7","bol_8","bol_9","bol_10"]
         let dinoImages = ["roar_1", "roar_2"]
@@ -183,16 +185,12 @@ class GameViewController: UIViewController {
         let currentRms = appDelegate.someVariable
         
         progressBarTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
-            if self.gameScore == 100{
-                progress += 0.10
-                self.ProgressBar.progress = progress
-            }
-            else
-            {
-                progress = 0.0
-                self.ProgressBar.progress = progress
-            }
+
+            var progress = Double(self.gameScore)/100
+            print(progress)
+            self.ProgressBar.progress = Float(progress)
         
+            
             if  self.ProgressBar.progress == 1.0 {
                 //self.ProgressBar.progress = 0.0
 
