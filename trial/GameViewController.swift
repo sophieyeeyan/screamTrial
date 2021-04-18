@@ -61,6 +61,7 @@ class GameViewController: UIViewController {
         CountdownLabel.text = String(timeLeft)
 
         if timeLeft <= 0 {
+            self.finishGame()
             countdownTimer?.invalidate()
             countdownTimer = nil
         }
@@ -72,9 +73,9 @@ class GameViewController: UIViewController {
         //ChecktimeLabel.text = String(appRunningTime)
         let currentRms = appDelegate.someVariable
         
-        let threshold:Int = Int(0.05)
+        let threshold:Float = Float(0.05)
         
-        if Int(currentRms) >= threshold
+        if Float(currentRms) >= threshold
         {
             print("someone is speaking loudly")
             animation2.image = roar1
@@ -177,6 +178,17 @@ class GameViewController: UIViewController {
         //callProgressTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(progressBar), userInfo: nil, repeats: true)
         checkLoudnessTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkLoudness), userInfo: nil, repeats: true)
         scoreTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(scoreText), userInfo: nil, repeats: true)
+        
+        if countdownTimer == nil {
+            countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                if self.timeLeft == 0 {
+                        self.finishGame()
+                    } else if self.timeLeft <= 60 {
+                        self.timeLeft -= 1
+                        self.onTimerFires()
+                    }
+            }
+        }
     }
     
     @objc func loudControl(){
@@ -237,6 +249,22 @@ class GameViewController: UIViewController {
     func touchDown(view2play: UIImageView) {
         print("touched")
         view2play.startAnimating()
+    }
+    
+    func finishGame () {
+        
+        
+        let alert = UIAlertController(title: "Time's Up!", message: "Your time is up! You got a score of \(gameScore) points. Awesome!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK, start new game", style: .default, handler: nil))
+
+        self.present(alert, animated: true, completion: nil)
+        
+        gameScore = 0
+        timeLeft = 60
+        
+        scoreText()
+        onTimerFires()
+        
     }
     
    
