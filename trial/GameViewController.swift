@@ -72,24 +72,53 @@ class GameViewController: UIViewController {
         //ChecktimeLabel.text = String(appRunningTime)
         let currentRms = appDelegate.someVariable
         
-        let threshold:Int = Int(0.01)
-        let showRoar1 = true
-        if Int(currentRms) >= threshold {
-            //print("someone is speaking loudly")
+        let threshold:Int = Int(0.05)
+        
+        if Int(currentRms) >= threshold
+        {
+            print("someone is speaking loudly")
             animation2.image = roar1
             timeAboveThreshold += 1
+            var showRoar = true
+            if (showRoar)
+            {
+             animation2.image = roar2
+                print("loading roar2")
+            }
+            else
+            {
+             showRoar = false
+             animation2.image = roar1
+                print("loading roar 1")
+            }
         }
         else
         {
+            print("someone is speaking quietly")
             animation2.image = roar2
             timeAboveThreshold = 0
+            let dontshowRoar = true
+                if (dontshowRoar)
+                {
+                 animation2.image = roar1
+                print("loading dont show roar2")
+
+                }
+                else
+                {
+                 animation2.image = roar2
+                    print("loading dont show roar2")
+
+                }
         }
+        
         
         if timeAboveThreshold > 3 {
         timeAboveThreshold = 0
+        print(timeAboveThreshold)
         gameScore += 10
         print("you have get one loud point")
-        print(gameScore)
+        //print(gameScore)
         }
         
         if timeAboveThreshold > 30 {
@@ -98,14 +127,7 @@ class GameViewController: UIViewController {
             print("level 1 completed")
         }
         
-        if (showRoar1)
-        {
-         animation2.image = roar1
-        }
-        else
-        {
-         animation2.image = roar2
-        }
+       
         
       
     }
@@ -187,7 +209,7 @@ class GameViewController: UIViewController {
         progressBarTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
 
             var progress = Double(self.gameScore)/100
-            print(progress)
+            //print(progress)
             self.ProgressBar.progress = Float(progress)
         
             
