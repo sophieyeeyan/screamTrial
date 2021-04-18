@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 rms /= Float(buffer.frameCapacity)
                 self.someVariable = rms
-                //print("loudnes RMS = \(rms)")
+                print("loudnes RMS = \(rms)")
             }
         }
         try audioEngine.start()
