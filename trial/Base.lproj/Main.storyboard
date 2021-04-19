@@ -118,7 +118,7 @@
     </scenes>
     <resources>
         <image name="bol_1" width="300" height="300"/>
-        <image name="roar_1" width="300" height="300"/>
+        <image name="roar_1" width="4564" height="4413"/>
         <image name="score" width="20" height="20"/>
         <image name="time" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
