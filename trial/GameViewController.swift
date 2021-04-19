@@ -137,6 +137,10 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         tap = UITapGestureRecognizer(target: self, action: #selector(GameViewController.handleTap(_:)))
         view.addGestureRecognizer(tap)
+        view.backgroundColor = UIColor(patternImage: )
+
+
+
         
         ProgressBar.progress = 0.0
         ProgressBar.transform =  ProgressBar.transform.scaledBy(x:1 , y:4)
